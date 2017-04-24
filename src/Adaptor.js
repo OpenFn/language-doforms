@@ -41,7 +41,7 @@ export function execute(...operations) {
  * @param {object} params - data to make the fetch
  * @returns {Operation}
  */
-export function post(params) {
+export function fetch(params) {
 
   return state => {
 
@@ -53,7 +53,7 @@ export function post(params) {
       return new Error(`Server responded with ${response.statusCode}`)
     }
 
-    const {url, body, headers} = expandReferences(params)(state);
+    const {endpoint, form, returnUrl} = expandReferences(params)(state);
 
     return new Promise((resolve, reject) => {
       console.log("Request body:");
